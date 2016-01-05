@@ -15,8 +15,9 @@ if args.source:
     content = ""
     if parsedUrl.scheme:
         print('Parsed Url is Valid', parsedUrl)
-        file_name = parsedUrl.split('/')[-1]
-        content = urllib2.urlopen(parsedUrl)
+        file_name = parsedUrl.geturl().split('/')[-1]
+        response = urllib2.urlopen(parsedUrl.geturl())
+        content = response.read()
     else:
         with open(args.source, 'r') as sourceFile:
             content = sourceFile.read()
